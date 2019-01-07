@@ -21,6 +21,11 @@ public class Send {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         //3.声明队列，队列声明方法queueDeclare具有幂等性。即只有当队列名不存在时才会被创建
+        /*声明队列的参数（队列名，
+                         Durable（是否持久化）,
+                         Exclusive(是否专一:只由一个connection使用,connection关闭后该队列被删除),
+                         Auto-delete (是否自动删除;当最后一个消费者取消订阅时自动删除队列),
+                         Arguments (可选参数)）*/
         channel.queueDeclare(QUEUE_NAME,false,false,false,null);
         String message = "Hello World!";
         //4.将消息发布到队列中
